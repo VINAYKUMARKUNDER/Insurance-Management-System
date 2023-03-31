@@ -2,43 +2,60 @@ package com.vinay.service;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.vinay.exception.ResourceNotFoundException;
 import com.vinay.model.Client;
+import com.vinay.repository.ClientRepository;
 
 public class ClientServiceImpl implements ClientService {
 
+	@Autowired
+	private ClientRepository clientRepository;
+
+	@Autowired
+	private ModelMapper modelMapper;
+
 	@Override
 	public Client addClient(Client client) {
-		// TODO Auto-generated method stub
-		return null;
+		return clientRepository.save(client);
 	}
 
 	@Override
 	public Client findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Client client = clientRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Client ", "clientId", "" + id));
+		return client;
 	}
 
 	@Override
 	public Client findByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		return clientRepository.findByEmail(email)
+				.orElseThrow(() -> new ResourceNotFoundException("Client", "client email", email));
 	}
 
 	@Override
 	public List<Client> findAllClient() {
-		// TODO Auto-generated method stub
-		return null;
+		return clientRepository.findAll();
 	}
 
 	@Override
 	public Client updateClientInfo(Client client, Integer clientId) {
-		// TODO Auto-generated method stub
-		return null;
+		clientRepository.findById(clientId)
+				.orElseThrow(() -> new ResourceNotFoundException("Client ", "clientId", "" + clientId));
+		Client updatedClient = modelMapper.map(client, Client.class);
+		updatedClient.setId(clientId);
+		return clientRepository.save(updatedClient);
 	}
 
 	@Override
-	public void deleteClient(Integer id) {
-		// TODO Auto-generated method stub
+	public String deleteClient(Integer id) {
+		Client client = clientRepository.findById(id)
+		.orElseThrow(() -> new ResourceNotFoundException("Client ", "clientId", "" + id));
+		clientRepository.delete(client);
+		
+		return "Client Data deleted successfully...";
 
 	}
 

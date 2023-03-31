@@ -57,8 +57,10 @@ public interface ClientService {
 	 * about information
 	 * 
 	 * after fetch all info delete data in database 
+	 * 
+	 * @return :String type return is one type msg send like data delete successfully.
 	 */
-	void deleteClient(Integer id);
+	String deleteClient(Integer id);
 	
 
 }
