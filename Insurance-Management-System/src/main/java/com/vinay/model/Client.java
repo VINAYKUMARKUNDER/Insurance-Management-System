@@ -2,6 +2,7 @@ package com.vinay.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,6 +40,9 @@ public class Client {
     private String phoneNumber;
     
     private String password;
+    
+    @Column(columnDefinition = "TEXT")
+    private String about;
 
     @Embedded
     private Address address;
