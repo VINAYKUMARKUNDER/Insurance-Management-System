@@ -13,7 +13,7 @@ public interface InsurancePolicyService {
 	 * after save all info in database
 	 * @return: return a saved info in database.
 	 */
-	InsurancePolicy createNewInsurancePolicy(InsurancePolicy insurancePolicy);
+	InsurancePolicy createNewInsurancePolicy(Integer clientId, InsurancePolicy insurancePolicy);
 	
 	/**
 	 * 

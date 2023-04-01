@@ -42,7 +42,6 @@ public class Claim {
     private ClaimStatus claimStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "policy_id")
     private InsurancePolicy policy;
 
 }

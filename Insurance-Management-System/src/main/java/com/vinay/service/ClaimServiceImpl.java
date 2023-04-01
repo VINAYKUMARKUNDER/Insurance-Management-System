@@ -2,6 +2,7 @@ package com.vinay.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.vinay.exception.ResourceNotFoundException;
 import com.vinay.model.Claim;
 import com.vinay.model.InsurancePolicy;
 import com.vinay.repository.ClaimRepository;
+import com.vinay.repository.InsurancePolicyRepository;
 
 
 @Service
@@ -21,6 +23,9 @@ public class ClaimServiceImpl implements ClaimService {
 	
 	@Autowired
 	private InsurancePolicyService insurancePolicyService;
+	
+	@Autowired
+	private InsurancePolicyRepository insurancePolicyRepository;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -29,8 +34,13 @@ public class ClaimServiceImpl implements ClaimService {
 	@Override
 	public Claim createNewClaim(Integer policyId,Claim claim) {
 		InsurancePolicy policy = insurancePolicyService.getById(policyId);
+		System.out.println(policy);
+		
 		claim.setPolicy(policy);
-		claim.setClaimDate(LocalDate.now());
+		 Set<Claim> claims = policy.getClaims();
+		 
+		policy.setClaims(claims);
+		insurancePolicyRepository.save(policy);
 		return claimRepository.save(claim);
 	}
 

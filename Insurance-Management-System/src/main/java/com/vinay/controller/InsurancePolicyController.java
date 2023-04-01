@@ -25,9 +25,9 @@ public class InsurancePolicyController {
 	private InsurancePolicyService insurancePolicyService;
 	
 	
-	@PostMapping("/")
-	public ResponseEntity<InsurancePolicy> createdInsurancePolicy(@RequestBody InsurancePolicy insurancePolicy){
-		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.createNewInsurancePolicy(insurancePolicy),HttpStatus.CREATED);
+	@PostMapping("/{ClientId}")
+	public ResponseEntity<InsurancePolicy> createdInsurancePolicy(@RequestBody InsurancePolicy insurancePolicy, @PathVariable("ClientId") Integer ClientId){
+		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.createNewInsurancePolicy(ClientId,insurancePolicy),HttpStatus.CREATED);
 	}
 	
 	
@@ -60,10 +60,10 @@ public class InsurancePolicyController {
 //		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.assignPolicyWithUser(clientId, policyId),HttpStatus.OK);
 //	}
 
-	@PutMapping("/")
-	public ResponseEntity<InsurancePolicy> assignInsurancePolicy(){
-		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.assignPolicyWithUser(3,2),HttpStatus.OK);
-	}
+//	@PutMapping("/")
+//	public ResponseEntity<InsurancePolicy> assignInsurancePolicy(){
+//		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.assignPolicyWithUser(1,1),HttpStatus.OK);
+//	}
 
 	
 

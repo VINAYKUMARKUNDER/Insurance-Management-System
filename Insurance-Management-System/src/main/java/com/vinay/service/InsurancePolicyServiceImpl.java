@@ -25,7 +25,9 @@ public class InsurancePolicyServiceImpl implements InsurancePolicyService {
 	private ModelMapper mapper;
 
 	@Override
-	public InsurancePolicy createNewInsurancePolicy(InsurancePolicy insurancePolicy) {
+	public InsurancePolicy createNewInsurancePolicy(Integer clientId, InsurancePolicy insurancePolicy) {
+		Client client = clientService.findById(clientId);
+		insurancePolicy.setClient(client);
 		return insurancePolicyRepository.save(insurancePolicy);
 	}
 

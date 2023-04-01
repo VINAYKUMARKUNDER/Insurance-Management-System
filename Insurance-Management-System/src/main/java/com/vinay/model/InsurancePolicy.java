@@ -59,9 +59,8 @@ public class InsurancePolicy {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @OneToMany(mappedBy = "policy", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "policy",cascade = CascadeType.ALL)
     private Set<Claim> claims = new HashSet();
-    
-    // Constructors, getters, and setters
+
 }
 
