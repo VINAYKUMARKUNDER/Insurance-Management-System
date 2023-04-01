@@ -34,12 +34,12 @@ public class ClaimServiceImpl implements ClaimService {
 	@Override
 	public Claim createNewClaim(Integer policyId,Claim claim) {
 		InsurancePolicy policy = insurancePolicyService.getById(policyId);
-		System.out.println(policy);
-		
+//		System.out.println(policy);
+//		Set<Claim> claims = policy.getClaims();
+//		claims.add(claim);
+//		policy.setClaims(claims);
 		claim.setPolicy(policy);
-		 Set<Claim> claims = policy.getClaims();
-		 
-		policy.setClaims(claims);
+	 
 		insurancePolicyRepository.save(policy);
 		return claimRepository.save(claim);
 	}
