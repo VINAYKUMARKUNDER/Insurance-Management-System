@@ -55,5 +55,8 @@ public interface InsurancePolicyService {
 	List<InsurancePolicy> getAllInsurancePolicy();
 	
 	
+	InsurancePolicy assignPolicyWithUser(Integer clientId, Integer policyId);
+	
+	
 
 }

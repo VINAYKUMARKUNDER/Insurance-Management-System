@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.vinay.exception.ResourceNotFoundException;
 import com.vinay.model.Claim;
+import com.vinay.model.InsurancePolicy;
 import com.vinay.repository.ClaimRepository;
 
 
@@ -17,13 +18,18 @@ public class ClaimServiceImpl implements ClaimService {
 	
 	@Autowired
 	private ClaimRepository claimRepository;
+	
+	@Autowired
+	private InsurancePolicyService insurancePolicyService;
 
 	@Autowired
 	private ModelMapper modelMapper;
 	
 	
 	@Override
-	public Claim createNewClaim(Claim claim) {
+	public Claim createNewClaim(Integer policyId,Claim claim) {
+		InsurancePolicy policy = insurancePolicyService.getById(policyId);
+		claim.setPolicy(policy);
 		claim.setClaimDate(LocalDate.now());
 		return claimRepository.save(claim);
 	}

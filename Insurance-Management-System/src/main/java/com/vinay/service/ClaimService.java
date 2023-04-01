@@ -11,7 +11,7 @@ public interface ClaimService {
 	 * @param claim: take all about claim detail
 	 * @return: return a saved claim in database
 	 */
-	Claim createNewClaim(Claim claim);
+	Claim createNewClaim(Integer policyId,Claim claim);
 	
 	/**
 	 * 

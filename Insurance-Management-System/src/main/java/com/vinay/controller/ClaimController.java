@@ -27,9 +27,9 @@ public class ClaimController {
 	
 	
 	
-	@PostMapping("/")
-	public ResponseEntity<Claim> createClaim(@RequestBody Claim claim){
-		return new ResponseEntity<Claim>(claimService.createNewClaim(claim),HttpStatus.CREATED);
+	@PostMapping("/{id}")
+	public ResponseEntity<Claim> createClaim(@PathVariable("id") Integer id, @RequestBody Claim claim){
+		return new ResponseEntity<Claim>(claimService.createNewClaim(id,claim),HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/{id}")

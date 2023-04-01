@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vinay.exception.ResourceNotFoundException;
+import com.vinay.model.Client;
 import com.vinay.model.InsurancePolicy;
 import com.vinay.repository.InsurancePolicyRepository;
 
@@ -16,6 +17,9 @@ public class InsurancePolicyServiceImpl implements InsurancePolicyService {
 	
 	@Autowired
 	private InsurancePolicyRepository insurancePolicyRepository;
+	
+	@Autowired
+	private ClientService clientService;
 	
 	@Autowired
 	private ModelMapper mapper;
@@ -48,6 +52,14 @@ public class InsurancePolicyServiceImpl implements InsurancePolicyService {
 	@Override
 	public List<InsurancePolicy> getAllInsurancePolicy() {
 		return insurancePolicyRepository.findAll();
+	}
+
+	@Override
+	public InsurancePolicy assignPolicyWithUser(Integer clientId, Integer policyId) {
+		Client client = clientService.findById(clientId);
+		InsurancePolicy policy = getById(policyId);
+		policy.setClient(client);
+		return updateInsurancePolcy(policy, policyId);
 	}
 
 }

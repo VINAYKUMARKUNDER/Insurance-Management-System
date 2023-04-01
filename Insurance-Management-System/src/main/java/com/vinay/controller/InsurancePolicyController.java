@@ -33,18 +33,19 @@ public class InsurancePolicyController {
 	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<InsurancePolicy> updateInsurancePolicy(@RequestBody InsurancePolicy insurancePolicy, @PathVariable("Id") Integer id){
+	public ResponseEntity<InsurancePolicy> updateInsurancePolicy(@RequestBody InsurancePolicy insurancePolicy, @PathVariable("id") Integer id){
 		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.updateInsurancePolcy(insurancePolicy, id),HttpStatus.OK);
 	}
+
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<String> deleteInsurancePolicy( @PathVariable("Id") Integer id){
-		return new ResponseEntity<String>(insurancePolicyService.deleteInsurancePolicy(id),HttpStatus.OK);
+	public ResponseEntity<String> deleteInsurancePolicy( @PathVariable("id") Integer id){
+	return new ResponseEntity<String>(insurancePolicyService.deleteInsurancePolicy(id),HttpStatus.OK);
 	}
 	
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<InsurancePolicy> getInsurancePolicy(@PathVariable("Id") Integer id){
+	public ResponseEntity<InsurancePolicy> getInsurancePolicy(@PathVariable("id") Integer id){
 		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.getById(id),HttpStatus.OK);
 	}
 	
@@ -52,6 +53,18 @@ public class InsurancePolicyController {
 	public ResponseEntity<List<InsurancePolicy>> getAllInsurancePolicy(){
 		return new ResponseEntity<List<InsurancePolicy>>(insurancePolicyService.getAllInsurancePolicy(),HttpStatus.OK);
 	}
+	
+	
+//	@PutMapping("/{clientId}/{policyId}")
+//	public ResponseEntity<InsurancePolicy> assignInsurancePolicy(@PathVariable("clientId") Integer clientId,@PathVariable("policyId") Integer policyId){
+//		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.assignPolicyWithUser(clientId, policyId),HttpStatus.OK);
+//	}
+
+	@PutMapping("/")
+	public ResponseEntity<InsurancePolicy> assignInsurancePolicy(){
+		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.assignPolicyWithUser(3,2),HttpStatus.OK);
+	}
+
 	
 
 }
