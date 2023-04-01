@@ -1,5 +1,6 @@
 package com.vinay.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -23,6 +24,7 @@ public class ClaimServiceImpl implements ClaimService {
 	
 	@Override
 	public Claim createNewClaim(Claim claim) {
+		claim.setClaimDate(LocalDate.now());
 		return claimRepository.save(claim);
 	}
 
@@ -33,9 +35,10 @@ public class ClaimServiceImpl implements ClaimService {
 
 	@Override
 	public Claim updateClaim(Claim claim, Integer claimId) {
-		claimRepository.findById(claimId).orElseThrow(()-> new ResourceNotFoundException("Claim ", "Claim id", ""+claimId));
+		Claim claime = claimRepository.findById(claimId).orElseThrow(()-> new ResourceNotFoundException("Claim ", "Claim id", ""+claimId));
 		Claim newClaim = modelMapper.map(claim, Claim.class);
 		newClaim.setId(claimId);
+		newClaim.setClaimDate(claime.getClaimDate());
 		return claimRepository.save(newClaim);
 	}
 
