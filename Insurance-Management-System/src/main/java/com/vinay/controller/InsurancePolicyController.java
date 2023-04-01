@@ -45,7 +45,7 @@ public class InsurancePolicyController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<InsurancePolicy> getInsurancePolicy(@PathVariable("Id") Integer id){
-		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.getBYId(id),HttpStatus.OK);
+		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.getById(id),HttpStatus.OK);
 	}
 	
 	@GetMapping("/")

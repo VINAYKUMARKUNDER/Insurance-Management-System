@@ -22,7 +22,7 @@ public interface InsurancePolicyService {
 	 * if exit then take detail in a single variable
 	 * @return: after all opration return this variable
 	 */
-	InsurancePolicy getBYId(Integer insuId);
+	InsurancePolicy getById(Integer insuId);
 	
 	
 	/**

@@ -26,7 +26,7 @@ public class InsurancePolicyServiceImpl implements InsurancePolicyService {
 	}
 
 	@Override
-	public InsurancePolicy getBYId(Integer insuId) {
+	public InsurancePolicy getById(Integer insuId) {
 		return insurancePolicyRepository.findById(insuId).orElseThrow(()-> new ResourceNotFoundException("Insurance Policy", "policy ", ""+insuId));
 	}
 

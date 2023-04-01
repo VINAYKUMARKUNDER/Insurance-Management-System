@@ -1,5 +1,6 @@
 package com.vinay.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -22,6 +23,7 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public Client addClient(Client client) {
+		if(LocalDate.now().isBefore(client.getDateOfBirth()))throw new ResourceNotFoundException("Date is not valid plese provide past date...");
 		return clientRepository.save(client);
 	}
 
@@ -45,10 +47,13 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public Client updateClientInfo(Client client, Integer clientId) {
-		clientRepository.findById(clientId)
+		if(client.getEmail()!=null)throw new ResourceNotFoundException("email not changeble plese remove email in json data...");
+		
+		Client prevClient = clientRepository.findById(clientId)
 				.orElseThrow(() -> new ResourceNotFoundException("Client ", "clientId", "" + clientId));
 		Client updatedClient = modelMapper.map(client, Client.class);
 		updatedClient.setId(clientId);
+		updatedClient.setEmail(prevClient.getEmail());
 		return clientRepository.save(updatedClient);
 	}
 
