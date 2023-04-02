@@ -46,7 +46,9 @@ public class GlobelExceptionHandler {
 	
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	public ResponseEntity<ResponseModel> dataIntegrityViolationException(DataIntegrityViolationException rs){
-		ResponseModel responseModel = new ResponseModel(rs.toString(), false, LocalDateTime.now());
+		String msg="data is already store in database!!                                ."
+				+rs.getMostSpecificCause().toString();
+		ResponseModel responseModel = new ResponseModel(msg, false, LocalDateTime.now());
 		return new ResponseEntity<ResponseModel>(responseModel, HttpStatus.BAD_REQUEST);
 	}
 	

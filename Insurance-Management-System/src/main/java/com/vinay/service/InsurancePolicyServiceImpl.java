@@ -1,6 +1,8 @@
 package com.vinay.service;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,26 +27,29 @@ public class InsurancePolicyServiceImpl implements InsurancePolicyService {
 	private ModelMapper modelMapper;
 
 	@Override
-	public InsurancePolicy createNewInsurancePolicy(Integer clientId, InsurancePolicyDto insurancePolicy) {
+	public InsurancePolicyDto createNewInsurancePolicy(Integer clientId, InsurancePolicyDto insurancePolicy) {
 		Client client = modelMapper.map(clientService.findById(clientId), Client.class);
 		InsurancePolicy policy = modelMapper.map(insurancePolicy, InsurancePolicy.class);
 		policy.setClient(client);
-		return insurancePolicyRepository.save(policy);
+		InsurancePolicy savedPolicy = insurancePolicyRepository.save(policy);
+		return modelMapper.map(savedPolicy, InsurancePolicyDto.class);
 	}
 
 	@Override
-	public InsurancePolicy getById(Integer insuId) {
-		return insurancePolicyRepository.findById(insuId)
+	public InsurancePolicyDto getById(Integer insuId) {
+		 InsurancePolicy policy = insurancePolicyRepository.findById(insuId)
 				.orElseThrow(() -> new ResourceNotFoundException("Insurance Policy", "policy ", "" + insuId));
+		return modelMapper.map(policy, InsurancePolicyDto.class);
 	}
 
 	@Override
-	public InsurancePolicy updateInsurancePolcy(InsurancePolicyDto insurancePolicy, Integer insuId) {
+	public InsurancePolicyDto updateInsurancePolcy(InsurancePolicyDto insurancePolicy, Integer insuId) {
 		insurancePolicyRepository.findById(insuId)
 				.orElseThrow(() -> new ResourceNotFoundException("Insurance Policy", "policy ", "" + insuId));
 		InsurancePolicy newInsurance = modelMapper.map(insurancePolicy, InsurancePolicy.class);
 		newInsurance.setId(insuId);
-		return insurancePolicyRepository.save(newInsurance);
+		 InsurancePolicy policy = insurancePolicyRepository.save(newInsurance);
+		 return modelMapper.map(policy, InsurancePolicyDto.class);
 	}
 
 	@Override
@@ -56,16 +61,18 @@ public class InsurancePolicyServiceImpl implements InsurancePolicyService {
 	}
 
 	@Override
-	public List<InsurancePolicy> getAllInsurancePolicy() {
-		return insurancePolicyRepository.findAll();
+	public List<InsurancePolicyDto> getAllInsurancePolicy() {
+		List<InsurancePolicy> policies = insurancePolicyRepository.findAll();
+		return policies.stream().map(policy-> modelMapper.map(policy, InsurancePolicyDto.class)).collect(Collectors.toList());
 	}
 
 	@Override
-	public InsurancePolicy assignPolicyWithUser(Integer clientId, Integer policyId) {
+	public InsurancePolicyDto assignPolicyWithUser(Integer clientId, Integer policyId) {
 		Client client =modelMapper.map(clientService.findById(clientId),Client.class);
 		InsurancePolicyDto policy = modelMapper.map(getById(policyId),InsurancePolicyDto.class);
 //		policy.setClient(client);
-		return updateInsurancePolcy(policy, policyId);
+		 InsurancePolicyDto updateInsurancePolcy = updateInsurancePolcy(policy, policyId);
+		 return modelMapper.map(updateInsurancePolcy, InsurancePolicyDto.class);
 	}
 
 }

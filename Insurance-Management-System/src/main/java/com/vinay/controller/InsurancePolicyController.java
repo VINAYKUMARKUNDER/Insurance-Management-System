@@ -27,15 +27,15 @@ public class InsurancePolicyController {
 	
 	
 	@PostMapping("/{ClientId}")
-	public ResponseEntity<InsurancePolicy> createdInsurancePolicy(@RequestBody InsurancePolicyDto insurancePolicy, @PathVariable("ClientId") Integer ClientId){
-		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.createNewInsurancePolicy(ClientId,insurancePolicy),HttpStatus.CREATED);
+	public ResponseEntity<InsurancePolicyDto> createdInsurancePolicy(@RequestBody InsurancePolicyDto insurancePolicy, @PathVariable("ClientId") Integer ClientId){
+		return new ResponseEntity<InsurancePolicyDto>(insurancePolicyService.createNewInsurancePolicy(ClientId,insurancePolicy),HttpStatus.CREATED);
 	}
 	
 	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<InsurancePolicy> updateInsurancePolicy(@RequestBody InsurancePolicyDto insurancePolicy, @PathVariable("id") Integer id){
-		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.updateInsurancePolcy(insurancePolicy, id),HttpStatus.OK);
+	public ResponseEntity<InsurancePolicyDto> updateInsurancePolicy(@RequestBody InsurancePolicyDto insurancePolicy, @PathVariable("id") Integer id){
+		return new ResponseEntity<InsurancePolicyDto>(insurancePolicyService.updateInsurancePolcy(insurancePolicy, id),HttpStatus.OK);
 	}
 
 	
@@ -46,13 +46,13 @@ public class InsurancePolicyController {
 	
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<InsurancePolicy> getInsurancePolicy(@PathVariable("id") Integer id){
-		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.getById(id),HttpStatus.OK);
+	public ResponseEntity<InsurancePolicyDto> getInsurancePolicy(@PathVariable("id") Integer id){
+		return new ResponseEntity<InsurancePolicyDto>(insurancePolicyService.getById(id),HttpStatus.OK);
 	}
 	
 	@GetMapping("/")
-	public ResponseEntity<List<InsurancePolicy>> getAllInsurancePolicy(){
-		return new ResponseEntity<List<InsurancePolicy>>(insurancePolicyService.getAllInsurancePolicy(),HttpStatus.OK);
+	public ResponseEntity<List<InsurancePolicyDto>> getAllInsurancePolicy(){
+		return new ResponseEntity<List<InsurancePolicyDto>>(insurancePolicyService.getAllInsurancePolicy(),HttpStatus.OK);
 	}
 	
 	

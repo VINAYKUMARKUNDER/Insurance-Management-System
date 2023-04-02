@@ -14,7 +14,7 @@ public interface InsurancePolicyService {
 	 * after save all info in database
 	 * @return: return a saved info in database.
 	 */
-	InsurancePolicy createNewInsurancePolicy(Integer clientId, InsurancePolicyDto insurancePolicy);
+	InsurancePolicyDto createNewInsurancePolicy(Integer clientId, InsurancePolicyDto insurancePolicy);
 	
 	/**
 	 * 
@@ -23,7 +23,7 @@ public interface InsurancePolicyService {
 	 * if exit then take detail in a single variable
 	 * @return: after all opration return this variable
 	 */
-	InsurancePolicy getById(Integer insuId);
+	InsurancePolicyDto getById(Integer insuId);
 	
 	
 	/**
@@ -37,7 +37,7 @@ public interface InsurancePolicyService {
 	 * 
 	 * @return: return a updated insurance policy detail
 	 */
-	InsurancePolicy updateInsurancePolcy(InsurancePolicyDto insurancePolicy, Integer insuId);
+	InsurancePolicyDto updateInsurancePolcy(InsurancePolicyDto insurancePolicy, Integer insuId);
 	
 	/**
 	 * 
@@ -53,10 +53,10 @@ public interface InsurancePolicyService {
 	 * 
 	 * @return: this is return all insurance policy in a list
 	 */
-	List<InsurancePolicy> getAllInsurancePolicy();
+	List<InsurancePolicyDto> getAllInsurancePolicy();
 	
 	
-	InsurancePolicy assignPolicyWithUser(Integer clientId, Integer policyId);
+	InsurancePolicyDto assignPolicyWithUser(Integer clientId, Integer policyId);
 	
 	
 
