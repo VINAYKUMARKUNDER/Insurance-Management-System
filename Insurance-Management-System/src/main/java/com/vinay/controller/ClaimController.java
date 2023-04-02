@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vinay.dto.ClaimDto;
 import com.vinay.model.Claim;
 import com.vinay.service.ClaimService;
 
@@ -28,7 +29,7 @@ public class ClaimController {
 	
 	
 	@PostMapping("/{id}")
-	public ResponseEntity<Claim> createClaim(@PathVariable("id") Integer id, @RequestBody Claim claim){
+	public ResponseEntity<Claim> createClaim(@PathVariable("id") Integer id, @RequestBody ClaimDto claim){
 		return new ResponseEntity<Claim>(claimService.createNewClaim(id,claim),HttpStatus.CREATED);
 	}
 	

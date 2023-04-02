@@ -8,6 +8,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vinay.dto.ClaimDto;
+import com.vinay.dto.InsurancePolicyDto;
 import com.vinay.exception.ResourceNotFoundException;
 import com.vinay.model.Claim;
 import com.vinay.model.InsurancePolicy;
@@ -32,16 +34,18 @@ public class ClaimServiceImpl implements ClaimService {
 	
 	
 	@Override
-	public Claim createNewClaim(Integer policyId,Claim claim) {
-		InsurancePolicy policy = insurancePolicyService.getById(policyId);
+	public Claim createNewClaim(Integer policyId,ClaimDto claim) {
+		InsurancePolicyDto policy = insurancePolicyService.getById(policyId);
 //		System.out.println(policy);
-//		Set<Claim> claims = policy.getClaims();
+//		 Set<ClaimDto> claims = policy.getClaims();
 //		claims.add(claim);
 //		policy.setClaims(claims);
-		claim.setPolicy(policy);
+//		claim.setPolicy(policy);
 	 
-		insurancePolicyRepository.save(policy);
-		return claimRepository.save(claim);
+//		insurancePolicyRepository.save(policy);
+		
+		Claim claimd = modelMapper.map(claim, Claim.class);
+		return claimRepository.save(claimd);
 	}
 
 	@Override
