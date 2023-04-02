@@ -5,7 +5,9 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,7 +35,7 @@ public class InsurancePolicyDto {
 //    @JoinColumn(name = "client_id")
 //    private ClientDto client;
 
-//    @OneToMany(mappedBy = "policy",cascade = CascadeType.ALL)
-//    private Set<ClaimDto> claims = new HashSet<>();
+    @OneToMany(mappedBy = "policy",cascade = CascadeType.ALL)
+    private Set<ClaimDto> claims = new HashSet<>();
 
 }

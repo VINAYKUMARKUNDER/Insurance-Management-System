@@ -29,8 +29,8 @@ public class ClaimDto {
     @Enumerated(EnumType.STRING)
     private ClaimStatus claimStatus;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private InsurancePolicyDto policy;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private InsurancePolicyDto policy;
 
 
 }
