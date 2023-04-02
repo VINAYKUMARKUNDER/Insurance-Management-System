@@ -1,15 +1,18 @@
 package com.vinay.service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vinay.dto.ClientDto;
 import com.vinay.exception.ResourceNotFoundException;
 import com.vinay.model.Client;
 import com.vinay.repository.ClientRepository;
-
 
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -21,43 +24,56 @@ public class ClientServiceImpl implements ClientService {
 	private ModelMapper modelMapper;
 
 	@Override
-	public Client addClient(Client client) {
-		return clientRepository.save(client);
+	public ClientDto addClient(ClientDto client) {
+		if (LocalDate.now().isBefore(client.getDateOfBirth()))
+			throw new ResourceNotFoundException("Date is not valid plese provide past date...");
+		Client clientData = modelMapper.map(client, Client.class);
+		Client savedClient = clientRepository.save(clientData);
+		return modelMapper.map(savedClient, ClientDto.class);
 	}
 
 	@Override
-	public Client findById(Integer id) {
+	public ClientDto findById(Integer id) {
 		Client client = clientRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Client ", "clientId", "" + id));
-		return client;
+		return modelMapper.map(client, ClientDto.class);
 	}
 
 	@Override
-	public Client findByEmail(String email) {
-		return clientRepository.findByEmail(email)
+	public ClientDto findByEmail(String email) {
+		Client client = clientRepository.findByEmail(email)
 				.orElseThrow(() -> new ResourceNotFoundException("Client", "client email", email));
+		return modelMapper.map(client, ClientDto.class);
 	}
 
 	@Override
-	public List<Client> findAllClient() {
-		return clientRepository.findAll();
+	public List<ClientDto> findAllClient() {
+		List<Client> clients = clientRepository.findAll();
+		List<ClientDto> clientsDto = clients.stream().map(client -> modelMapper.map(client, ClientDto.class))
+				.collect(Collectors.toList());
+		return clientsDto;
 	}
 
 	@Override
-	public Client updateClientInfo(Client client, Integer clientId) {
-		clientRepository.findById(clientId)
+	public ClientDto updateClientInfo(ClientDto client, Integer clientId) {
+		if (client.getEmail() != null)
+			throw new ResourceNotFoundException("email not changeble plese remove email in json data...");
+
+		Client prevClient = clientRepository.findById(clientId)
 				.orElseThrow(() -> new ResourceNotFoundException("Client ", "clientId", "" + clientId));
 		Client updatedClient = modelMapper.map(client, Client.class);
 		updatedClient.setId(clientId);
-		return clientRepository.save(updatedClient);
+		updatedClient.setEmail(prevClient.getEmail());
+		Client updatedClientdata = clientRepository.save(updatedClient);
+		return modelMapper.map(updatedClientdata, ClientDto.class);
 	}
 
 	@Override
 	public String deleteClient(Integer id) {
 		Client client = clientRepository.findById(id)
-		.orElseThrow(() -> new ResourceNotFoundException("Client ", "clientId", "" + id));
+				.orElseThrow(() -> new ResourceNotFoundException("Client ", "clientId", "" + id));
 		clientRepository.delete(client);
-		
+
 		return "Client Data deleted successfully...";
 
 	}

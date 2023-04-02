@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vinay.dto.InsurancePolicyDto;
 import com.vinay.model.InsurancePolicy;
 import com.vinay.service.InsurancePolicyService;
 
@@ -25,33 +26,46 @@ public class InsurancePolicyController {
 	private InsurancePolicyService insurancePolicyService;
 	
 	
-	@PostMapping("/")
-	public ResponseEntity<InsurancePolicy> createdInsurancePolicy(@RequestBody InsurancePolicy insurancePolicy){
-		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.createNewInsurancePolicy(insurancePolicy),HttpStatus.CREATED);
+	@PostMapping("/{ClientId}")
+	public ResponseEntity<InsurancePolicyDto> createdInsurancePolicy(@RequestBody InsurancePolicyDto insurancePolicy, @PathVariable("ClientId") Integer ClientId){
+		return new ResponseEntity<InsurancePolicyDto>(insurancePolicyService.createNewInsurancePolicy(ClientId,insurancePolicy),HttpStatus.CREATED);
 	}
 	
 	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<InsurancePolicy> updateInsurancePolicy(@RequestBody InsurancePolicy insurancePolicy, @PathVariable("Id") Integer id){
-		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.updateInsurancePolcy(insurancePolicy, id),HttpStatus.OK);
+	public ResponseEntity<InsurancePolicyDto> updateInsurancePolicy(@RequestBody InsurancePolicyDto insurancePolicy, @PathVariable("id") Integer id){
+		return new ResponseEntity<InsurancePolicyDto>(insurancePolicyService.updateInsurancePolcy(insurancePolicy, id),HttpStatus.OK);
 	}
+
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<String> deleteInsurancePolicy( @PathVariable("Id") Integer id){
-		return new ResponseEntity<String>(insurancePolicyService.deleteInsurancePolicy(id),HttpStatus.OK);
+	public ResponseEntity<String> deleteInsurancePolicy( @PathVariable("id") Integer id){
+	return new ResponseEntity<String>(insurancePolicyService.deleteInsurancePolicy(id),HttpStatus.OK);
 	}
 	
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<InsurancePolicy> getInsurancePolicy(@PathVariable("Id") Integer id){
-		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.getBYId(id),HttpStatus.OK);
+	public ResponseEntity<InsurancePolicyDto> getInsurancePolicy(@PathVariable("id") Integer id){
+		return new ResponseEntity<InsurancePolicyDto>(insurancePolicyService.getById(id),HttpStatus.OK);
 	}
 	
 	@GetMapping("/")
-	public ResponseEntity<List<InsurancePolicy>> getAllInsurancePolicy(){
-		return new ResponseEntity<List<InsurancePolicy>>(insurancePolicyService.getAllInsurancePolicy(),HttpStatus.OK);
+	public ResponseEntity<List<InsurancePolicyDto>> getAllInsurancePolicy(){
+		return new ResponseEntity<List<InsurancePolicyDto>>(insurancePolicyService.getAllInsurancePolicy(),HttpStatus.OK);
 	}
+	
+	
+//	@PutMapping("/{clientId}/{policyId}")
+//	public ResponseEntity<InsurancePolicy> assignInsurancePolicy(@PathVariable("clientId") Integer clientId,@PathVariable("policyId") Integer policyId){
+//		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.assignPolicyWithUser(clientId, policyId),HttpStatus.OK);
+//	}
+
+//	@PutMapping("/")
+//	public ResponseEntity<InsurancePolicy> assignInsurancePolicy(){
+//		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.assignPolicyWithUser(1,1),HttpStatus.OK);
+//	}
+
 	
 
 }

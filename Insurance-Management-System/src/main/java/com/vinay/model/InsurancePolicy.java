@@ -37,7 +37,7 @@ public class InsurancePolicy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "policy_number")
+    @Column(name = "policy_number", unique = true)
     private String policyNumber;
 
     @Column(name = "policy_type")
@@ -59,9 +59,8 @@ public class InsurancePolicy {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @OneToMany(mappedBy = "policy", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "policy",cascade = CascadeType.ALL)
     private Set<Claim> claims = new HashSet();
-    
-    // Constructors, getters, and setters
+
 }
 

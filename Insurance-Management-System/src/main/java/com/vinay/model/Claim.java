@@ -6,6 +6,8 @@ import jakarta.persistence.Enumerated;
 
 import java.time.LocalDate;
 
+import com.vinay.dto.InsurancePolicyDto;
+
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -42,8 +44,7 @@ public class Claim {
     private ClaimStatus claimStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "policy_id")
-    private InsurancePolicy policy;
+    private InsurancePolicyDto policy;
 
 }
 

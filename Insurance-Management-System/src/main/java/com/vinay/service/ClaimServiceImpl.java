@@ -1,14 +1,20 @@
 package com.vinay.service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vinay.dto.ClaimDto;
+import com.vinay.dto.InsurancePolicyDto;
 import com.vinay.exception.ResourceNotFoundException;
 import com.vinay.model.Claim;
+import com.vinay.model.InsurancePolicy;
 import com.vinay.repository.ClaimRepository;
+import com.vinay.repository.InsurancePolicyRepository;
 
 
 @Service
@@ -16,14 +22,30 @@ public class ClaimServiceImpl implements ClaimService {
 	
 	@Autowired
 	private ClaimRepository claimRepository;
+	
+	@Autowired
+	private InsurancePolicyService insurancePolicyService;
+	
+	@Autowired
+	private InsurancePolicyRepository insurancePolicyRepository;
 
 	@Autowired
 	private ModelMapper modelMapper;
 	
 	
 	@Override
-	public Claim createNewClaim(Claim claim) {
-		return claimRepository.save(claim);
+	public Claim createNewClaim(Integer policyId,ClaimDto claim) {
+		InsurancePolicyDto policy = insurancePolicyService.getById(policyId);
+//		System.out.println(policy);
+//		 Set<ClaimDto> claims = policy.getClaims();
+//		claims.add(claim);
+//		policy.setClaims(claims);
+//		claim.setPolicy(policy);
+	 
+//		insurancePolicyRepository.save(policy);
+		
+		Claim claimd = modelMapper.map(claim, Claim.class);
+		return claimRepository.save(claimd);
 	}
 
 	@Override
@@ -33,9 +55,10 @@ public class ClaimServiceImpl implements ClaimService {
 
 	@Override
 	public Claim updateClaim(Claim claim, Integer claimId) {
-		claimRepository.findById(claimId).orElseThrow(()-> new ResourceNotFoundException("Claim ", "Claim id", ""+claimId));
+		Claim claime = claimRepository.findById(claimId).orElseThrow(()-> new ResourceNotFoundException("Claim ", "Claim id", ""+claimId));
 		Claim newClaim = modelMapper.map(claim, Claim.class);
 		newClaim.setId(claimId);
+		newClaim.setClaimDate(claime.getClaimDate());
 		return claimRepository.save(newClaim);
 	}
 

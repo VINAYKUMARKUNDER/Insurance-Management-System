@@ -2,6 +2,7 @@ package com.vinay.service;
 
 import java.util.List;
 
+import com.vinay.dto.InsurancePolicyDto;
 import com.vinay.model.InsurancePolicy;
 
 public interface InsurancePolicyService {
@@ -13,7 +14,7 @@ public interface InsurancePolicyService {
 	 * after save all info in database
 	 * @return: return a saved info in database.
 	 */
-	InsurancePolicy createNewInsurancePolicy(InsurancePolicy insurancePolicy);
+	InsurancePolicyDto createNewInsurancePolicy(Integer clientId, InsurancePolicyDto insurancePolicy);
 	
 	/**
 	 * 
@@ -22,7 +23,7 @@ public interface InsurancePolicyService {
 	 * if exit then take detail in a single variable
 	 * @return: after all opration return this variable
 	 */
-	InsurancePolicy getBYId(Integer insuId);
+	InsurancePolicyDto getById(Integer insuId);
 	
 	
 	/**
@@ -36,7 +37,7 @@ public interface InsurancePolicyService {
 	 * 
 	 * @return: return a updated insurance policy detail
 	 */
-	InsurancePolicy updateInsurancePolcy(InsurancePolicy insurancePolicy, Integer insuId);
+	InsurancePolicyDto updateInsurancePolcy(InsurancePolicyDto insurancePolicy, Integer insuId);
 	
 	/**
 	 * 
@@ -52,7 +53,10 @@ public interface InsurancePolicyService {
 	 * 
 	 * @return: this is return all insurance policy in a list
 	 */
-	List<InsurancePolicy> getAllInsurancePolicy();
+	List<InsurancePolicyDto> getAllInsurancePolicy();
+	
+	
+	InsurancePolicyDto assignPolicyWithUser(Integer clientId, Integer policyId);
 	
 	
 
