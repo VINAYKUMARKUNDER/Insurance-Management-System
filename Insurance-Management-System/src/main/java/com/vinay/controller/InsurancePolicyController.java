@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vinay.dto.InsurancePolicyDto;
 import com.vinay.model.InsurancePolicy;
 import com.vinay.service.InsurancePolicyService;
 
@@ -26,14 +27,14 @@ public class InsurancePolicyController {
 	
 	
 	@PostMapping("/{ClientId}")
-	public ResponseEntity<InsurancePolicy> createdInsurancePolicy(@RequestBody InsurancePolicy insurancePolicy, @PathVariable("ClientId") Integer ClientId){
+	public ResponseEntity<InsurancePolicy> createdInsurancePolicy(@RequestBody InsurancePolicyDto insurancePolicy, @PathVariable("ClientId") Integer ClientId){
 		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.createNewInsurancePolicy(ClientId,insurancePolicy),HttpStatus.CREATED);
 	}
 	
 	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<InsurancePolicy> updateInsurancePolicy(@RequestBody InsurancePolicy insurancePolicy, @PathVariable("id") Integer id){
+	public ResponseEntity<InsurancePolicy> updateInsurancePolicy(@RequestBody InsurancePolicyDto insurancePolicy, @PathVariable("id") Integer id){
 		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.updateInsurancePolcy(insurancePolicy, id),HttpStatus.OK);
 	}
 

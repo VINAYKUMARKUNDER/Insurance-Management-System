@@ -2,6 +2,7 @@ package com.vinay.service;
 
 import java.util.List;
 
+import com.vinay.dto.InsurancePolicyDto;
 import com.vinay.model.InsurancePolicy;
 
 public interface InsurancePolicyService {
@@ -13,7 +14,7 @@ public interface InsurancePolicyService {
 	 * after save all info in database
 	 * @return: return a saved info in database.
 	 */
-	InsurancePolicy createNewInsurancePolicy(Integer clientId, InsurancePolicy insurancePolicy);
+	InsurancePolicy createNewInsurancePolicy(Integer clientId, InsurancePolicyDto insurancePolicy);
 	
 	/**
 	 * 
@@ -36,7 +37,7 @@ public interface InsurancePolicyService {
 	 * 
 	 * @return: return a updated insurance policy detail
 	 */
-	InsurancePolicy updateInsurancePolcy(InsurancePolicy insurancePolicy, Integer insuId);
+	InsurancePolicy updateInsurancePolcy(InsurancePolicyDto insurancePolicy, Integer insuId);
 	
 	/**
 	 * 

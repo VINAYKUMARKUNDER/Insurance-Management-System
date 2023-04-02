@@ -2,6 +2,7 @@ package com.vinay.service;
 
 import java.util.List;
 
+import com.vinay.dto.ClientDto;
 import com.vinay.model.Client;
 
 public interface ClientService {
@@ -12,7 +13,7 @@ public interface ClientService {
 	 * @return : return type client info also this is return saved information in database.
 	 * first came client info and this client info save in database and return this.
 	 */
-	Client addClient(Client client);
+	ClientDto addClient(ClientDto client);
 	
 	/**
 	 * 
@@ -21,7 +22,7 @@ public interface ClientService {
 	 * about information
 	 * @return: after fetch all info return the same info in this method.
 	 */
-	Client findById(Integer id);
+	ClientDto findById(Integer id);
 	
 	
 	/**
@@ -31,13 +32,13 @@ public interface ClientService {
 	 * about information
 	 * @return: after fetch all info return the same info in this method.
 	 */
-	Client findByEmail(String email);
+	ClientDto findByEmail(String email);
 	
 	/**
 	 * 
 	 * @return: in this method return all Client information in a list.
 	 */
-	List<Client>  findAllClient();
+	List<ClientDto>  findAllClient();
 	
 	
 	/**
@@ -48,7 +49,7 @@ public interface ClientService {
 	 * 			after fetch about client info in database we are swap both client info and update in database
 	 * @return : after updating data about client we are return client data
 	 */
-	Client updateClientInfo(Client client, Integer clientId);
+	ClientDto updateClientInfo(ClientDto client, Integer clientId);
 	
 	/**
 	 * 
