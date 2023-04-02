@@ -75,4 +75,10 @@ public class InsurancePolicyServiceImpl implements InsurancePolicyService {
 		 return modelMapper.map(updateInsurancePolcy, InsurancePolicyDto.class);
 	}
 
+	@Override
+	public List<InsurancePolicy> getAllClaimsByPolicyNumber(Integer policyId) {
+		insurancePolicyRepository.findById(policyId).orElseThrow(()-> new ResourceNotFoundException(null));
+		return null;
+	}
+
 }

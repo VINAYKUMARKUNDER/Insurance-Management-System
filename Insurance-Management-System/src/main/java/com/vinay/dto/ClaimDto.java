@@ -29,5 +29,5 @@ public class ClaimDto {
     @NotNull(message = "Claim Status is required")
     private ClaimStatus claimStatus;
 
-//    private InsurancePolicyDto policy;
+    private InsurancePolicyDto policy;
 }
