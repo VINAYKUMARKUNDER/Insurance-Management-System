@@ -44,7 +44,7 @@ public class Claim {
     private ClaimStatus claimStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private InsurancePolicyDto policy;
+    private InsurancePolicy policy;
 
 }
 

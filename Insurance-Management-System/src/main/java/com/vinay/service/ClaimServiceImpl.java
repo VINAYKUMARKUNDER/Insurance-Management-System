@@ -23,11 +23,6 @@ public class ClaimServiceImpl implements ClaimService {
 	@Autowired
 	private ClaimRepository claimRepository;
 	
-	@Autowired
-	private InsurancePolicyService insurancePolicyService;
-	
-	@Autowired
-	private InsurancePolicyRepository insurancePolicyRepository;
 
 	@Autowired
 	private ModelMapper modelMapper;
