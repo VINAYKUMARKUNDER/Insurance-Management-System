@@ -4,6 +4,9 @@ import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -48,6 +51,7 @@ public class Client {
 
     private String phoneNumber;
     
+    @JsonProperty(access = Access.WRITE_ONLY)
     private String password;
     
     @Column(columnDefinition = "TEXT")

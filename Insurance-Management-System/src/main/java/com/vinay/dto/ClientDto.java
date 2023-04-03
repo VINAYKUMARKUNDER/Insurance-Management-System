@@ -5,6 +5,8 @@ import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.vinay.model.Address;
 
 import jakarta.validation.constraints.Email;
@@ -40,6 +42,7 @@ public class ClientDto {
     @Size(min = 10, max = 10, message = "Phone Number must be only 10 digits!!")
     private String phoneNumber;
 
+    @JsonProperty(access = Access.WRITE_ONLY)
     @Size(min = 8, max = 20, message = "Password must be between 8 and 20 characters")
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]+$", message = "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character")
     private String password;
