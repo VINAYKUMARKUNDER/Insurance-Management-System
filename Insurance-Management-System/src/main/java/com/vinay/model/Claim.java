@@ -43,8 +43,8 @@ public class Claim {
     @Enumerated(EnumType.STRING)
     private ClaimStatus claimStatus;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private InsurancePolicyDto policy;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private InsurancePolicy policy;
 
 }
 

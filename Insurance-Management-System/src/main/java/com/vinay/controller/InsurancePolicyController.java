@@ -18,6 +18,8 @@ import com.vinay.dto.InsurancePolicyDto;
 import com.vinay.model.InsurancePolicy;
 import com.vinay.service.InsurancePolicyService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/policies/")
 public class InsurancePolicyController {
@@ -27,14 +29,14 @@ public class InsurancePolicyController {
 	
 	
 	@PostMapping("/{ClientId}")
-	public ResponseEntity<InsurancePolicyDto> createdInsurancePolicy(@RequestBody InsurancePolicyDto insurancePolicy, @PathVariable("ClientId") Integer ClientId){
+	public ResponseEntity<InsurancePolicyDto> createdInsurancePolicy(@Valid @RequestBody InsurancePolicyDto insurancePolicy, @PathVariable("ClientId") Integer ClientId){
 		return new ResponseEntity<InsurancePolicyDto>(insurancePolicyService.createNewInsurancePolicy(ClientId,insurancePolicy),HttpStatus.CREATED);
 	}
 	
 	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<InsurancePolicyDto> updateInsurancePolicy(@RequestBody InsurancePolicyDto insurancePolicy, @PathVariable("id") Integer id){
+	public ResponseEntity<InsurancePolicyDto> updateInsurancePolicy(@Valid @RequestBody InsurancePolicyDto insurancePolicy, @PathVariable("id") Integer id){
 		return new ResponseEntity<InsurancePolicyDto>(insurancePolicyService.updateInsurancePolcy(insurancePolicy, id),HttpStatus.OK);
 	}
 

@@ -58,6 +58,15 @@ public interface InsurancePolicyService {
 	
 	InsurancePolicyDto assignPolicyWithUser(Integer clientId, Integer policyId);
 	
+	/**
+	 * 
+	 * @param policyId: take insurance id by user and check this id able in database or not
+	 * if in database this id not exit then throw a particular exception 
+	 * if exit then take detail in a single variable
+	 * @return: return policy details with all particular claims
+	 */
+	List<InsurancePolicy> getAllClaimsByPolicyNumber(Integer policyId);
+	
 	
 
 }
