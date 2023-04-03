@@ -48,6 +48,6 @@ public class InsurancePolicyDto {
     @JoinColumn(name = "client_id")
     private Client client;
 
-//    @OneToMany(mappedBy = "policy", cascade = CascadeType.ALL)
-//    private Set<ClaimDto> claims = new HashSet<>();
+    @OneToMany(mappedBy = "policy", cascade = CascadeType.ALL)
+    private Set<ClaimDto> claims = new HashSet<>();
 }
