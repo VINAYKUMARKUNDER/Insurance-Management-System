@@ -5,7 +5,11 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.vinay.model.Client;
+
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
@@ -39,6 +43,10 @@ public class InsurancePolicyDto {
 
     @NotNull(message = "End Date is required")
     private LocalDate endDate;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id")
+    private Client client;
 
 //    @OneToMany(mappedBy = "policy", cascade = CascadeType.ALL)
 //    private Set<ClaimDto> claims = new HashSet<>();
