@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @Configuration
 public class AppConfig {
 	
+	
 	@Bean
 	public SecurityFilterChain securityConfigrationChain(HttpSecurity http) throws Exception {
 		
@@ -25,6 +26,7 @@ public class AppConfig {
 		.csrf().disable()
 		.authorizeHttpRequests()
 		.requestMatchers(HttpMethod.POST, "/api/clients/").permitAll()
+		.requestMatchers( "/v3/api-docs").permitAll()
 		.anyRequest()
 		.authenticated()
 		.and()

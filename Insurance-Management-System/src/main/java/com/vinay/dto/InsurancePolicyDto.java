@@ -44,10 +44,8 @@ public class InsurancePolicyDto {
     @NotNull(message = "End Date is required")
     private LocalDate endDate;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "client_id")
+
     private Client client;
 
-    @OneToMany(mappedBy = "policy", cascade = CascadeType.ALL)
     private Set<ClaimDto> claims = new HashSet<>();
 }

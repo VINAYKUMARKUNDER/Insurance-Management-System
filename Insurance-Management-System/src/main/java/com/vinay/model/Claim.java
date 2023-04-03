@@ -43,7 +43,7 @@ public class Claim {
     @Enumerated(EnumType.STRING)
     private ClaimStatus claimStatus;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private InsurancePolicy policy;
 
 }

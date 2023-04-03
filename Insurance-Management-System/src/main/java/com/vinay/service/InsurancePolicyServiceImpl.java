@@ -14,6 +14,8 @@ import com.vinay.model.Client;
 import com.vinay.model.InsurancePolicy;
 import com.vinay.repository.InsurancePolicyRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class InsurancePolicyServiceImpl implements InsurancePolicyService {
 
@@ -34,7 +36,8 @@ public class InsurancePolicyServiceImpl implements InsurancePolicyService {
 		InsurancePolicy savedPolicy = insurancePolicyRepository.save(policy);
 		return modelMapper.map(savedPolicy, InsurancePolicyDto.class);
 	}
-
+	
+	@Transactional
 	@Override
 	public InsurancePolicyDto getById(Integer insuId) {
 		 InsurancePolicy policy = insurancePolicyRepository.findById(insuId)

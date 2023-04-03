@@ -39,7 +39,7 @@ public class JwtGenraterTokanFilter extends OncePerRequestFilter{
 			.claim("username", authentication.getName())
 			.claim("authorities", convertAuthWithString(authentication.getAuthorities()))
 			.setIssuedAt(new Date())
-			.setExpiration(new Date(new Date().getTime()+300000))
+			.setExpiration(new Date(new Date().getTime()+30000000))
 			.signWith(key).compact();
 			
 			response.setHeader(SecurityContext.JWT_HEADER, jwt);

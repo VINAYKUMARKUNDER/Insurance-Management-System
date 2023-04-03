@@ -38,7 +38,7 @@ public class ClaimController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Claim> updateClaim(@RequestBody Claim claim,@PathVariable("id") Integer id){
+	public ResponseEntity<Claim> updateClaim(@Valid @RequestBody Claim claim,@PathVariable("id") Integer id){
 		return new ResponseEntity<Claim>(claimService.updateClaim(claim, id),HttpStatus.OK);
 	}
 	
