@@ -1,6 +1,8 @@
 package com.vinay.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Spliterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,8 @@ import com.vinay.dto.ClaimDto;
 import com.vinay.model.Claim;
 import com.vinay.service.ClaimService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/claims/")
 public class ClaimController {
@@ -29,7 +33,7 @@ public class ClaimController {
 	
 	
 	@PostMapping("/{id}")
-	public ResponseEntity<Claim> createClaim(@PathVariable("id") Integer id, @RequestBody ClaimDto claim){
+	public ResponseEntity<Claim> createClaim(@PathVariable("id") Integer id,@Valid @RequestBody ClaimDto claim){
 		return new ResponseEntity<Claim>(claimService.createNewClaim(id,claim),HttpStatus.CREATED);
 	}
 	
