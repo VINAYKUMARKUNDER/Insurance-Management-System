@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.vinay.dto.ClientDto;
@@ -19,6 +20,9 @@ public class ClientServiceImpl implements ClientService {
 
 	@Autowired
 	private ClientRepository clientRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -28,6 +32,7 @@ public class ClientServiceImpl implements ClientService {
 		if (LocalDate.now().isBefore(client.getDateOfBirth()))
 			throw new ResourceNotFoundException("Date is not valid plese provide past date...");
 		Client clientData = modelMapper.map(client, Client.class);
+		clientData.setPassword(passwordEncoder.encode(clientData.getPassword()));
 		Client savedClient = clientRepository.save(clientData);
 		return modelMapper.map(savedClient, ClientDto.class);
 	}
@@ -64,6 +69,7 @@ public class ClientServiceImpl implements ClientService {
 		Client updatedClient = modelMapper.map(client, Client.class);
 		updatedClient.setId(clientId);
 		updatedClient.setEmail(prevClient.getEmail());
+		updatedClient.setPassword(passwordEncoder.encode(updatedClient.getPassword()));
 		Client updatedClientdata = clientRepository.save(updatedClient);
 		return modelMapper.map(updatedClientdata, ClientDto.class);
 	}
