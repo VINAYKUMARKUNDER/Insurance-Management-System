@@ -38,7 +38,7 @@ public class AppConfig {
 		.csrf().disable()
 		.authorizeHttpRequests()
 		.requestMatchers("/swagger-ui*/**",  "/v3/api-docs/**").permitAll()
-		.requestMatchers(HttpMethod.POST, "/api/clients/","/signIn").permitAll()
+		.requestMatchers(HttpMethod.POST, "/api/clients/").permitAll()
 		.anyRequest()
 		.authenticated()
 		.and()
@@ -63,7 +63,10 @@ public class AppConfig {
 		return new BCryptPasswordEncoder();
 	}
 
-	
+	@Bean
+	public ModelMapper mapper() {
+		return new ModelMapper();
+	}
  
 
 }

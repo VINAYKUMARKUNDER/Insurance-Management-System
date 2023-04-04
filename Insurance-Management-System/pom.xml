@@ -32,7 +32,7 @@
 		</dependency>
 
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
 		</dependency>
@@ -41,7 +41,7 @@
 			<groupId>jakarta.validation</groupId>
 			<artifactId>jakarta.validation-api</artifactId>
 			<version>3.0.1</version>
-		</dependency>
+		</dependency> -->
 
 
 		<dependency>

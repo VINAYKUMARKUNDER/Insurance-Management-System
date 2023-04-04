@@ -1,10 +1,7 @@
 package com.vinay;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
@@ -28,9 +25,6 @@ public class InsuranceManagementSystemApplication {
 		SpringApplication.run(InsuranceManagementSystemApplication.class, args);
 	}
 	
-	@Bean
-	public ModelMapper mapper() {
-		return new ModelMapper();
-	}
+	
 
 }
