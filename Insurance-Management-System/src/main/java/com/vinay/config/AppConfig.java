@@ -11,10 +11,22 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 
 @Configuration
+@EnableWebMvc
 public class AppConfig {
+	
+	public static final String[] PUBLIC_API= {
+			"/v3/api-docs",
+			"/api/v1/auth/**",
+			"/v2/api-docs",
+			"/swagger-resources/**",
+			"/swagger-ui/**",
+			"/webjars/**"
+			
+	};
 	
 	
 	@Bean
@@ -25,8 +37,8 @@ public class AppConfig {
 		.and()
 		.csrf().disable()
 		.authorizeHttpRequests()
-		.requestMatchers(HttpMethod.POST, "/api/clients/").permitAll()
-		.requestMatchers( "/v3/api-docs").permitAll()
+		.requestMatchers("/swagger-ui*/**",  "/v3/api-docs/**").permitAll()
+		.requestMatchers(HttpMethod.POST, "/api/clients/","/signIn").permitAll()
 		.anyRequest()
 		.authenticated()
 		.and()
@@ -42,10 +54,8 @@ public class AppConfig {
 	}
 	
 	
-	@Bean
-	public ModelMapper mapper() {
-		return new ModelMapper();
-	}
+	
+	 
 	
 	
 	@Bean
