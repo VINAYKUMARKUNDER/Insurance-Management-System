@@ -1,7 +1,9 @@
 package com.vinay;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -14,7 +16,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 
 @SpringBootApplication
 
-@OpenAPIDefinition(info = @Info(title = "Rest Api", version = "1.1"), security = {
+@OpenAPIDefinition(info = @Info(title = "REST API", version = "1.1"), security = {
 		@SecurityRequirement(name = "basicAuth"), @SecurityRequirement(name = "bearerToken") }, servers = {
 				@Server(url = "/", description = "Default Server URL") })
 
@@ -24,6 +26,11 @@ public class InsuranceManagementSystemApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(InsuranceManagementSystemApplication.class, args);
+	}
+	
+	@Bean
+	public ModelMapper mapper() {
+		return new ModelMapper();
 	}
 
 }

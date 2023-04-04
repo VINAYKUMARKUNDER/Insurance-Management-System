@@ -37,7 +37,7 @@ public class AppConfig {
 		.and()
 		.csrf().disable()
 		.authorizeHttpRequests()
-		.requestMatchers("/swagger-ui*/**",  "/v2/api-docs/**").permitAll()
+		.requestMatchers("/swagger-ui*/**",  "/v3/api-docs/**").permitAll()
 		.requestMatchers(HttpMethod.POST, "/api/clients/","/signIn").permitAll()
 		.anyRequest()
 		.authenticated()
@@ -56,10 +56,6 @@ public class AppConfig {
 	
 	
 	 
-	@Bean
-	public ModelMapper mapper() {
-		return new ModelMapper();
-	}
 	
 	
 	@Bean
