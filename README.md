@@ -12,7 +12,6 @@ This project is an implementation of a RESTful API for managing insurance polici
 - Technologies Used
 - Getting Started
 - API Documentation
-- Testing
 - Contributing
 - License
 
@@ -57,11 +56,11 @@ To get started with the project, you will need to have the following tools insta
 
 To set up the project, follow these steps:
 
-1. Clone the project repository: git clone [https://github.com/your-username/insurance-policy-management](https://github.com/VINAYKUMARKUNDER/Insurance-Management-System).git
-2. Navigate to the project directory: cd insurance-policy-management
+1. Clone the project repository: git clone [https://github.com/VINAYKUMARKUNDER/Insurance-Management-System](https://github.com/VINAYKUMARKUNDER/Insurance-Management-System).git
+2. Navigate to the project directory: **cd insurance-policy-management**
 3. Open the application.properties file and configure your MySQL database settings
-4. Build the project using Maven: mvn clean install
-5. Run the project: mvn spring-boot:run
+4. Build the project using Maven: **mvn clean install**
+5. Run the project: **mvn spring-boot:run**
 
 
 The API will be accessible at http://localhost:8080.
@@ -69,16 +68,14 @@ The API will be accessible at http://localhost:8080.
 ## API Documentation
 API documentation is available using Swagger. To access the documentation, run the project and navigate to http://localhost:8080/swagger-ui.html.
 
-## Testing
-Tests have been implemented for the API using JUnit and Mockito. To run the tests, use the following command: mvn test.
 
 ## Contributing
 If you would like to contribute to the project, please follow these steps:
 
 1. Fork the project repository
-2. Create a new branch for your changes: git checkout -b my-new-feature
-3. Make your changes and commit them: git commit -am 'Add some feature'
-4. Push the changes to your branch: git push origin my-new-feature
+2. Create a new branch for your changes: **git checkout -b my-new-feature**
+3. Make your changes and commit them: **git commit -am 'Add some feature'**
+4. Push the changes to your branch: **git push origin my-new-feature**
 5. Submit a pull request
 
 
