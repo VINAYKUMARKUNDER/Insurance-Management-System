@@ -31,10 +31,10 @@ public class ClientController {
 	@Autowired
 	private ClientService clientService;
 	
-	@PostMapping("/")
-	public ResponseEntity<ClientDto> createClient(@Valid @RequestBody ClientDto client){
-	return new ResponseEntity<ClientDto>(clientService.addClient(client),HttpStatus.CREATED);
-	}
+//	@PostMapping("/")
+//	public ResponseEntity<ClientDto> createClient(@Valid @RequestBody ClientDto client){
+//	return new ResponseEntity<ClientDto>(clientService.addClient(client),HttpStatus.CREATED);
+//	}
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<ClientDto> updateClient(@Valid @RequestBody ClientDto client, @PathVariable("id") Integer id){

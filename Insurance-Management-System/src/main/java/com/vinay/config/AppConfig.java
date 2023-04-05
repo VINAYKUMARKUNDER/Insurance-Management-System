@@ -38,7 +38,7 @@ public class AppConfig {
 		.csrf().disable()
 		.authorizeHttpRequests()
 		.requestMatchers("/swagger-ui*/**",  "/v3/api-docs/**").permitAll()
-		.requestMatchers(HttpMethod.POST, "/api/clients/").permitAll()
+		.requestMatchers(HttpMethod.POST, "/api/clients/","/login").permitAll()
 		.anyRequest()
 		.authenticated()
 		.and()
