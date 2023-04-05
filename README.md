@@ -57,7 +57,7 @@ To get started with the project, you will need to have the following tools insta
 
 To set up the project, follow these steps:
 
-1. Clone the project repository: git clone https://github.com/your-username/insurance-policy-management.git
+1. Clone the project repository: git clone [https://github.com/your-username/insurance-policy-management](https://github.com/VINAYKUMARKUNDER/Insurance-Management-System).git
 2. Navigate to the project directory: cd insurance-policy-management
 3. Open the application.properties file and configure your MySQL database settings
 4. Build the project using Maven: mvn clean install
