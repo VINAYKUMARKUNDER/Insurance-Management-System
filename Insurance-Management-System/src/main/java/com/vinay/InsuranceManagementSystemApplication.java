@@ -14,7 +14,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 @SpringBootApplication
 
 @OpenAPIDefinition(
-		info = @Info(title = "REST API", version = "1.1"), 
+		info = @Info(title = "Insurance-Management-System with Vinay", version = "1.1"), 
 security = {
 		@SecurityRequirement(name = "basicAuth"),
 		@SecurityRequirement(name = "bearerToken") 

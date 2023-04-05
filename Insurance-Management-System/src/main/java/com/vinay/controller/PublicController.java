@@ -34,7 +34,7 @@ public class PublicController {
 	}
 	
 	
-	@PostMapping("/")
+	@PostMapping("/register")
 	public ResponseEntity<ClientDto> createClient(@Valid @RequestBody ClientDto client){
 	return new ResponseEntity<ClientDto>(clientService.addClient(client),HttpStatus.CREATED);
 	}
