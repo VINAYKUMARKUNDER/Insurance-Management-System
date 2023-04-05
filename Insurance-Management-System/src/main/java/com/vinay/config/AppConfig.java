@@ -19,21 +19,18 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class AppConfig {
 	
 	public static final String[] PUBLIC_API= {
-		    "/v3/api-docs",
-		    "/api/v1/auth/**",
-		    "/v2/api-docs",
-		    "/swagger-resources/**",
-		    "/swagger-ui/**",
-		    "/webjars/**",
-		    "/swagger-ui.html"
-		};
+			"/v3/api-docs",
+			"/api/v1/auth/**",
+			"/v2/api-docs",
+			"/swagger-resources/**",
+			"/swagger-ui/**",
+			"/webjars/**"
+			
+	};
 	
 	
 	@Bean
 	public SecurityFilterChain securityConfigrationChain(HttpSecurity http) throws Exception {
-		
-
-
 		
 		http
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -70,14 +67,6 @@ public class AppConfig {
 	public ModelMapper mapper() {
 		return new ModelMapper();
 	}
-	
-//	@Bean
-//	public UiConfiguration uiConfig() {
-//	    return UiConfigurationBuilder.builder()
-//	            .docExpansion(DocExpansion.NONE)
-//	            .build();
-//	}
-
  
 
 }
